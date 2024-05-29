@@ -17,3 +17,11 @@ type Column = {
 export type Columns = {
   [key: string]: Column;
 };
+
+export interface ITask extends Document {
+  _id: string;
+  title: string;
+  description: string;
+  status: "Pending" | "InProgress" | "Completed";
+  completedAt: Date;
+}

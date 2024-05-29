@@ -54,6 +54,11 @@ io.on("connection", (socket) => {
     const task = await Task.findById(taskId);
     if (task) {
       task.status = destinationStatus;
+      if (destinationStatus === "Completed") {
+        task.completedAt = new Date();
+      } else {
+        task.completedAt = undefined;
+      }
       await task.save();
       io.sockets.emit("tasks", await Task.find());
     }
